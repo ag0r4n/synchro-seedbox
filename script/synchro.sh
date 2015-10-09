@@ -88,7 +88,7 @@ function send_file_job
 	echo "sending $1"
 	echo "$SOURCE_PATH/$1" > $SYNC_LOG
 
-	rsync -aPRL --partial-dir=.tmp --temp-dir=.tmp --rsh=ssh --remove-sent-files --bwlimit=$bwlimit "$1" "$user_SSH"@"$IP":"$SYNC_DEST" >> $SYNC_LOG
+	rsync -aPRL -p --chmod=ug+rwx --partial-dir=.tmp --temp-dir=.tmp --rsh=ssh --remove-sent-files --bwlimit=$bwlimit "$1" "$user_SSH"@"$IP":"$SYNC_DEST" >> $SYNC_LOG
 }
 
 . ./config/user.cfg
